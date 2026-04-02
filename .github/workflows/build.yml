@@ -1,0 +1,30 @@
+name: Build ADPSS DLL
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure CMake (MinGW)
+        run: cmake -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc
+
+      - name: Build DLL
+        run: cmake --build build
+
+      - name: Show DLL exports
+        run: objdump -p build/adpss_testadpssmodel260402.dll | findstr /I "Name"
+        shell: cmd
+
+      - name: Upload DLL artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: adpss_testadpssmodel260402_dll
+          path: build/adpss_testadpssmodel260402.dll
