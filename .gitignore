@@ -1,0 +1,14 @@
+# Build artifacts
+build/
+*.obj
+*.dll
+*.lib
+*.exe
+
+# Simulink cache and project files
+slprj/
+*.slxc
+*.autosave
+
+# MATLAB temp
+*.slx.bak
