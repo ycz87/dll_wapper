@@ -5,7 +5,6 @@ Generate ADPSS wrapper files from Simulink-generated C code.
 Parses the model header file to extract model name, inputs, and outputs,
 then generates:
   - adpss_wrapper.c   (ADPSS <-> Simulink bridge)
-  - adpss_wrapper.def  (DLL export list)
   - CMakeLists.txt     (build configuration)
 
 Usage:
@@ -308,16 +307,6 @@ void DLLAPI Terminate{model_name}(void *pModelInfo)
     return "\n".join(lines)
 
 
-def generate_def(model_name):
-    """Generate adpss_wrapper.def content."""
-    return (
-        f"EXPORTS\n"
-        f"    Init{model_name}\n"
-        f"    Step{model_name}\n"
-        f"    Terminate{model_name}\n"
-    )
-
-
 def generate_cmake(model_name, model_dir):
     """Generate CMakeLists.txt content."""
     dir_basename = os.path.basename(model_dir.rstrip("/\\"))
@@ -364,15 +353,8 @@ target_compile_definitions(adpss_{model_name} PRIVATE
     TID01EQ=0
 )
 
-# Use .def file for controlled exports
-if(MSVC)
-    set_target_properties(adpss_{model_name} PROPERTIES
-        LINK_FLAGS "/DEF:${{CMAKE_SOURCE_DIR}}/adpss_wrapper.def"
-    )
-elseif(MINGW)
-    set_target_properties(adpss_{model_name} PROPERTIES
-        LINK_FLAGS "${{CMAKE_SOURCE_DIR}}/adpss_wrapper.def"
-    )
+# Static link MinGW runtime (only when building locally with MinGW)
+if(MINGW)
     target_link_options(adpss_{model_name} PRIVATE -static-libgcc -static)
 endif()
 
@@ -422,17 +404,12 @@ def main():
 
     # Generate files
     wrapper_c = generate_wrapper_c(model_name, model_dir, inputs, outputs)
-    wrapper_def = generate_def(model_name)
     cmake = generate_cmake(model_name, model_dir)
 
     # Write output files
     with open("adpss_wrapper.c", "w") as f:
         f.write(wrapper_c)
     print("\nGenerated: adpss_wrapper.c")
-
-    with open("adpss_wrapper.def", "w") as f:
-        f.write(wrapper_def)
-    print("Generated: adpss_wrapper.def")
 
     with open("CMakeLists.txt", "w") as f:
         f.write(cmake)
