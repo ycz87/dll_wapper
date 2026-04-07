@@ -114,12 +114,21 @@ def generate_wrapper_c(model_name, model_dir, inputs, outputs):
  */
 
 #include <stdlib.h>
+#include <string.h>
 #include "{model_name}.h"
 
-#ifdef _WIN32
+#ifdef _WINDOWS
+#ifdef _DLLAPI
 #define DLLAPI __declspec(dllexport)
 #else
+#define DLLAPI __declspec(dllimport)
+#endif
+#else
 #define DLLAPI
+#endif
+
+#ifdef __cplusplus
+extern "C" {{
 #endif
 
 /* Model instance struct for pModelInfo */
@@ -290,6 +299,10 @@ void DLLAPI Terminate{model_name}(void *pModelInfo)
         free(pModelInfo);
     }}
 }}
+
+#ifdef __cplusplus
+}}
+#endif
 """)
 
     return "\n".join(lines)
@@ -333,6 +346,10 @@ target_include_directories(adpss_{model_name} PRIVATE
 )
 
 target_compile_definitions(adpss_{model_name} PRIVATE
+    _WINDOWS
+    _DLLAPI
+    UNICODE
+    _UNICODE
     MODEL={model_name}
     NUMST=1
     NCSTATES=0

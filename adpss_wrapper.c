@@ -8,12 +8,21 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 #include "testadpssmodel260402.h"
 
-#ifdef _WIN32
+#ifdef _WINDOWS
+#ifdef _DLLAPI
 #define DLLAPI __declspec(dllexport)
 #else
+#define DLLAPI __declspec(dllimport)
+#endif
+#else
 #define DLLAPI
+#endif
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 /* Model instance struct for pModelInfo */
@@ -107,3 +116,7 @@ void DLLAPI Terminatetestadpssmodel260402(void *pModelInfo)
         free(pModelInfo);
     }
 }
+
+#ifdef __cplusplus
+}
+#endif

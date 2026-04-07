@@ -13,6 +13,10 @@ target_include_directories(adpss_testadpssmodel260402 PRIVATE
 )
 
 target_compile_definitions(adpss_testadpssmodel260402 PRIVATE
+    _WINDOWS
+    _DLLAPI
+    UNICODE
+    _UNICODE
     MODEL=testadpssmodel260402
     NUMST=1
     NCSTATES=0
