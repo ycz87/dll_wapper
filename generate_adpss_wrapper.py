@@ -364,6 +364,11 @@ target_compile_definitions(adpss_{model_name} PRIVATE
     TID01EQ=0
 )
 
+# Static link MinGW runtime so the DLL has no external dependencies
+if(MINGW)
+    target_link_options(adpss_{model_name} PRIVATE -static-libgcc -static)
+endif()
+
 # Use .def file for exports
 if(WIN32)
     set_target_properties(adpss_{model_name} PROPERTIES
