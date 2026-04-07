@@ -13,21 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup MSYS2 with MinGW64
-        uses: msys2/setup-msys2@v2
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
         with:
-          msystem: MINGW64
-          install: mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-make
+          arch: x64
+
+      - name: Configure CMake (MSVC)
+        run: cmake -B build -G "NMake Makefiles"
 
       - name: Build DLL
-        shell: msys2 {0}
-        run: |
-          cmake -B build -G "MinGW Makefiles" -DCMAKE_MAKE_PROGRAM=mingw32-make
-          cmake --build build
+        run: cmake --build build
 
-      - name: List build output
-        shell: msys2 {0}
-        run: ls -la build/*.dll
+      - name: Verify DLL exports
+        run: dumpbin /exports build\adpss_*.dll
+
+      - name: Verify DLL dependencies
+        run: dumpbin /dependents build\adpss_*.dll
 
       - name: Upload DLL artifact
         uses: actions/upload-artifact@v4

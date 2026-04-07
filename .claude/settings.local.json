@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(file /d/matlabtemp/dll_wapper/*.slx)"
+      "Bash(file /d/matlabtemp/dll_wapper/*.slx)",
+      "WebSearch"
     ]
   }
 }

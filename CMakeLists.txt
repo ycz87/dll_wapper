@@ -31,16 +31,16 @@ target_compile_definitions(adpss_testadpssmodel260402 PRIVATE
     TID01EQ=0
 )
 
-# Static link MinGW runtime so the DLL has no external dependencies
-if(MINGW)
-    target_link_options(adpss_testadpssmodel260402 PRIVATE -static-libgcc -static)
-endif()
-
-# Use .def file for exports
+# Use .def file for controlled exports
 if(WIN32)
     set_target_properties(adpss_testadpssmodel260402 PROPERTIES
         LINK_FLAGS "${CMAKE_SOURCE_DIR}/adpss_wrapper.def"
     )
+endif()
+
+# Static link MinGW runtime (only when using MinGW locally)
+if(MINGW)
+    target_link_options(adpss_testadpssmodel260402 PRIVATE -static-libgcc -static)
 endif()
 
 set_target_properties(adpss_testadpssmodel260402 PROPERTIES
