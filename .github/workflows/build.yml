@@ -13,18 +13,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure CMake (MinGW)
-        run: cmake -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc
+      - name: Setup MSYS2 with MinGW64
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake make
 
       - name: Build DLL
-        run: cmake --build build
+        shell: msys2 {0}
+        run: |
+          cmake -B build -G "MinGW Makefiles"
+          cmake --build build
 
-      - name: Show DLL exports
-        run: objdump -p build/adpss_testadpssmodel260402.dll | findstr /I "Name"
-        shell: cmd
+      - name: List build output
+        shell: msys2 {0}
+        run: ls -la build/*.dll
 
       - name: Upload DLL artifact
         uses: actions/upload-artifact@v4
         with:
-          name: adpss_testadpssmodel260402_dll
-          path: build/adpss_testadpssmodel260402.dll
+          name: adpss-dll
+          path: build/*.dll
