@@ -337,8 +337,7 @@ target_include_directories(adpss_{model_name} PRIVATE
 target_compile_definitions(adpss_{model_name} PRIVATE
     _WINDOWS
     _DLLAPI
-    UNICODE
-    _UNICODE
+    _MBCS
     MODEL={model_name}
     NUMST=1
     NCSTATES=0
@@ -353,9 +352,22 @@ target_compile_definitions(adpss_{model_name} PRIVATE
     TID01EQ=0
 )
 
-# Static link MinGW runtime (only when building locally with MinGW)
+# MSVC: static runtime (/MT), match VS2012 flags
+if(MSVC)
+    set_property(TARGET adpss_{model_name} PROPERTY
+        MSVC_RUNTIME_LIBRARY "MultiThreaded")
+    target_compile_options(adpss_{model_name} PRIVATE
+        /W3 /GS /Gy /Gd /Oi /GL /EHsc
+    )
+    target_link_options(adpss_{model_name} PRIVATE
+        /LTCG
+    )
+endif()
+
+# MinGW: static link runtime (for local builds)
 if(MINGW)
-    target_link_options(adpss_{model_name} PRIVATE -static-libgcc -static)
+    target_link_options(adpss_{model_name} PRIVATE -static-libgcc -static -m32)
+    target_compile_options(adpss_{model_name} PRIVATE -m32)
 endif()
 
 set_target_properties(adpss_{model_name} PROPERTIES
