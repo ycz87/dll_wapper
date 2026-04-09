@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.5
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Thu Apr  9 10:09:21 2026
+ * C/C++ source code generated on : Thu Apr  9 22:31:51 2026
  *
  * Target selection: ert_shrlib.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -30,10 +30,13 @@ RT_MODEL_testadpssmodel260402_T *const testadpssmodel260402_M =
 void testadpssmodel260402_step(void)
 {
   /* Outport: '<Root>/Out1' incorporates:
+   *  Constant: '<Root>/Constant'
+   *  Constant: '<Root>/Constant1'
    *  Inport: '<Root>/In1'
+   *  Product: '<Root>/Product'
    *  Sum: '<Root>/Add'
    */
-  testadpssmodel260402_Y.Out1 = testadpssmodel260402_U.In1 - 2.0;
+  testadpssmodel260402_Y.Out1 = (testadpssmodel260402_U.In1 + 1.0) * 2.0;
 }
 
 /* Model initialize function */
