@@ -1,7 +1,7 @@
--ID:/matlabtemp/dll_wapper
--ID:/matlabtemp/dll_wapper/testadpssmodel260402_ert_shrlib_rtw
--ID:/MATLAB/R2025a/extern/include
--ID:/MATLAB/R2025a/simulink/include
--ID:/MATLAB/R2025a/rtw/c/src
--ID:/MATLAB/R2025a/rtw/c/src/ext_mode/common
--ID:/MATLAB/R2025a/rtw/c/ert
+-ID:/ADPSS1/dll_wapper
+-ID:/ADPSS1/dll_wapper/testadpssmodel260402_ert_shrlib_rtw
+-I"D:/Program Files/MATLAB/R2025a/extern/include"
+-I"D:/Program Files/MATLAB/R2025a/simulink/include"
+-I"D:/Program Files/MATLAB/R2025a/rtw/c/src"
+-I"D:/Program Files/MATLAB/R2025a/rtw/c/src/ext_mode/common"
+-I"D:/Program Files/MATLAB/R2025a/rtw/c/ert"
