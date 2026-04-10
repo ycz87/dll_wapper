@@ -2,7 +2,7 @@
 ## Makefile generated for component 'testadpssmodel260402'. 
 ## 
 ## Makefile     : testadpssmodel260402.mk
-## Generated on : Fri Apr 10 09:36:47 2026
+## Generated on : Fri Apr 10 09:42:04 2026
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/testadpssmodel260402_win64.dll
 ## Product type : shared library
 ## 
@@ -185,7 +185,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_STAN
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c
+SRCS = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rtGetNaN.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rt_nonfinite.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402_data.c
 
 MAIN_SRC = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/ert_main.c
 
@@ -195,7 +195,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = testadpssmodel260402.obj
+OBJS = rtGetNaN.obj rt_nonfinite.obj testadpssmodel260402.obj testadpssmodel260402_data.obj
 
 MAIN_OBJ = ert_main.obj
 
@@ -538,7 +538,19 @@ ert_main.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/ert_main.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
+rtGetNaN.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rtGetNaN.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+rt_nonfinite.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rt_nonfinite.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
 testadpssmodel260402.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+testadpssmodel260402_data.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402_data.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
