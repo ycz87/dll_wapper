@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.5
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Fri Apr 10 09:29:34 2026
+ * C/C++ source code generated on : Fri Apr 10 09:36:45 2026
  *
  * Target selection: ert_shrlib.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -17,9 +17,6 @@
 #define testadpssmodel260402_private_h_
 #include "rtwtypes.h"
 #include "testadpssmodel260402_types.h"
-
-extern real_T rt_modd_snf(real_T u0, real_T u1);
-
 #endif                                 /* testadpssmodel260402_private_h_ */
 
 /*
