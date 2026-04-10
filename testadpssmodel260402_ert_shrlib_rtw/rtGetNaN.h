@@ -1,5 +1,5 @@
 /*
- * File: testadpssmodel260402_types.h
+ * File: rtGetNaN.h
  *
  * Code generated for Simulink model 'testadpssmodel260402'.
  *
@@ -13,13 +13,15 @@
  * Validation result: Not run
  */
 
-#ifndef testadpssmodel260402_types_h_
-#define testadpssmodel260402_types_h_
+#ifndef rtGetNaN_h_
+#define rtGetNaN_h_
+#include "rt_nonfinite.h"
+#include "rtwtypes.h"
 
-/* Forward declaration for rtModel */
-typedef struct tag_RTM_testadpssmodel260402_T RT_MODEL_testadpssmodel260402_T;
+extern real_T rtGetNaN(void);
+extern real32_T rtGetNaNF(void);
 
-#endif                                 /* testadpssmodel260402_types_h_ */
+#endif                                 /* rtGetNaN_h_ */
 
 /*
  * File trailer for generated code.

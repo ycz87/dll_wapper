@@ -1,5 +1,5 @@
 /*
- * File: testadpssmodel260402_types.h
+ * File: rt_nonfinite.h
  *
  * Code generated for Simulink model 'testadpssmodel260402'.
  *
@@ -13,13 +13,22 @@
  * Validation result: Not run
  */
 
-#ifndef testadpssmodel260402_types_h_
-#define testadpssmodel260402_types_h_
+#ifndef rt_nonfinite_h_
+#define rt_nonfinite_h_
+#include "rtwtypes.h"
 
-/* Forward declaration for rtModel */
-typedef struct tag_RTM_testadpssmodel260402_T RT_MODEL_testadpssmodel260402_T;
+extern real_T rtInf;
+extern real_T rtMinusInf;
+extern real_T rtNaN;
+extern real32_T rtInfF;
+extern real32_T rtMinusInfF;
+extern real32_T rtNaNF;
+extern boolean_T rtIsInf(real_T value);
+extern boolean_T rtIsInfF(real32_T value);
+extern boolean_T rtIsNaN(real_T value);
+extern boolean_T rtIsNaNF(real32_T value);
 
-#endif                                 /* testadpssmodel260402_types_h_ */
+#endif                                 /* rt_nonfinite_h_ */
 
 /*
  * File trailer for generated code.

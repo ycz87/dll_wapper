@@ -5,7 +5,7 @@
  *
  * Model version                  : 1.5
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Thu Apr  9 22:31:51 2026
+ * C/C++ source code generated on : Fri Apr 10 09:29:34 2026
  *
  * Target selection: ert_shrlib.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -76,7 +76,7 @@ int_T main(int_T argc, const char *argv[])
   testadpssmodel260402_initialize();
 
   /* Attach rt_OneStep to a timer or interrupt service routine with
-   * period 0.2 seconds (base rate of the model) here.
+   * period 5.0E-5 seconds (base rate of the model) here.
    * The call syntax for rt_OneStep is
    *
    *  rt_OneStep();
