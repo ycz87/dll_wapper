@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'testadpssmodel260402'.
  *
- * Model version                  : 1.5
+ * Model version                  : 1.6
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Fri Apr 10 09:42:01 2026
+ * C/C++ source code generated on : Fri Apr 10 20:22:24 2026
  *
  * Target selection: ert_shrlib.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -76,41 +76,37 @@ real_T rt_modd_snf(real_T u0, real_T u1)
 /* Model step function */
 void testadpssmodel260402_step(void)
 {
-  real_T tmp_2[2];
-  real_T rtb_DeadZone;
+  real_T tmp[2];
   real_T rtb_Gain1_idx_0;
   real_T rtb_Gain1_idx_1;
-  real_T tmp;
   int32_T i;
-  int8_T tmp_0;
-  int8_T tmp_1;
 
-  /* Gain: '<S58>/Gain3' incorporates:
+  /* Gain: '<S56>/Gain3' incorporates:
    *  Inport: '<Root>/Vabc'
    */
   rtb_Gain1_idx_0 = 0.0;
   rtb_Gain1_idx_1 = 0.0;
   for (i = 0; i < 3; i++) {
-    _mm_storeu_pd(&tmp_2[0], _mm_add_pd(_mm_mul_pd(_mm_loadu_pd
+    _mm_storeu_pd(&tmp[0], _mm_add_pd(_mm_mul_pd(_mm_loadu_pd
       (&testadpssmodel260402_ConstP.Gain3_Gain[3 * i]), _mm_set1_pd
       (testadpssmodel260402_U.Vabc[i])), _mm_set_pd(rtb_Gain1_idx_1,
       rtb_Gain1_idx_0)));
-    rtb_Gain1_idx_0 = tmp_2[0];
-    rtb_Gain1_idx_1 = tmp_2[1];
+    rtb_Gain1_idx_0 = tmp[0];
+    rtb_Gain1_idx_1 = tmp[1];
   }
 
-  /* End of Gain: '<S58>/Gain3' */
+  /* End of Gain: '<S56>/Gain3' */
 
-  /* Gain: '<S58>/Gain1' */
+  /* Gain: '<S56>/Gain1' */
   rtb_Gain1_idx_0 *= 0.66666666666666663;
   rtb_Gain1_idx_1 *= 0.66666666666666663;
 
-  /* Outputs for Enabled SubSystem: '<S57>/Subsystem1' incorporates:
-   *  EnablePort: '<S62>/Enable'
+  /* Outputs for Enabled SubSystem: '<S55>/Subsystem1' incorporates:
+   *  EnablePort: '<S60>/Enable'
    */
   if (testadpssmodel260402_ConstB.Compare > 0) {
-    /* Fcn: '<S62>/Fcn1' incorporates:
-     *  Fcn: '<S62>/Fcn'
+    /* Fcn: '<S60>/Fcn1' incorporates:
+     *  Fcn: '<S60>/Fcn'
      *  UnitDelay: '<Root>/Unit Delay'
      */
     testadpssmodel260402_B.Fcn1 = -rtb_Gain1_idx_0 * sin
@@ -118,146 +114,76 @@ void testadpssmodel260402_step(void)
       (testadpssmodel260402_Y.theta);
   }
 
-  /* End of Outputs for SubSystem: '<S57>/Subsystem1' */
+  /* End of Outputs for SubSystem: '<S55>/Subsystem1' */
 
-  /* Outputs for Enabled SubSystem: '<S57>/Subsystem - pi//2 delay' incorporates:
-   *  EnablePort: '<S61>/Enable'
+  /* Outputs for Enabled SubSystem: '<S55>/Subsystem - pi//2 delay' incorporates:
+   *  EnablePort: '<S59>/Enable'
    */
-  if (testadpssmodel260402_ConstB.Compare_m > 0) {
-    /* Fcn: '<S61>/Fcn1' incorporates:
-     *  Fcn: '<S61>/Fcn'
+  if (testadpssmodel260402_ConstB.Compare_h > 0) {
+    /* Fcn: '<S59>/Fcn1' incorporates:
+     *  Fcn: '<S59>/Fcn'
      *  UnitDelay: '<Root>/Unit Delay'
      */
-    testadpssmodel260402_B.Fcn1_i = rtb_Gain1_idx_0 * cos
+    testadpssmodel260402_B.Fcn1_o = rtb_Gain1_idx_0 * cos
       (testadpssmodel260402_Y.theta) + rtb_Gain1_idx_1 * sin
       (testadpssmodel260402_Y.theta);
   }
 
-  /* End of Outputs for SubSystem: '<S57>/Subsystem - pi//2 delay' */
+  /* End of Outputs for SubSystem: '<S55>/Subsystem - pi//2 delay' */
 
-  /* Switch: '<S57>/Switch' */
+  /* Switch: '<S55>/Switch' */
   if (testadpssmodel260402_ConstB.Compare != 0) {
-    /* Sum: '<Root>/Sum4' */
+    /* Sum: '<Root>/Sum' */
     rtb_Gain1_idx_1 = testadpssmodel260402_B.Fcn1;
   } else {
-    /* Sum: '<Root>/Sum4' */
-    rtb_Gain1_idx_1 = testadpssmodel260402_B.Fcn1_i;
+    /* Sum: '<Root>/Sum' */
+    rtb_Gain1_idx_1 = testadpssmodel260402_B.Fcn1_o;
   }
 
-  /* End of Switch: '<S57>/Switch' */
+  /* End of Switch: '<S55>/Switch' */
 
-  /* Gain: '<S42>/Filter Coefficient' incorporates:
-   *  DiscreteIntegrator: '<S34>/Filter'
-   *  Gain: '<S32>/Derivative Gain'
-   *  Sum: '<S34>/SumD'
+  /* Gain: '<S40>/Filter Coefficient' incorporates:
+   *  DiscreteIntegrator: '<S32>/Filter'
+   *  Gain: '<S30>/Derivative Gain'
+   *  Sum: '<S32>/SumD'
    */
   rtb_Gain1_idx_0 = (0.0 * rtb_Gain1_idx_1 -
                      testadpssmodel260402_DW.Filter_DSTATE) * 100.0;
 
-  /* Sum: '<S48>/Sum' incorporates:
-   *  DiscreteIntegrator: '<S39>/Integrator'
-   *  Gain: '<S44>/Proportional Gain'
+  /* DiscreteIntegrator: '<Root>/Discrete-Time Integrator' incorporates:
+   *  Constant: '<Root>/Constant1'
+   *  DiscreteIntegrator: '<S37>/Integrator'
+   *  Sum: '<Root>/Sum1'
+   *  Sum: '<S46>/Sum'
    */
-  rtb_DeadZone = (177.7 * rtb_Gain1_idx_1 +
-                  testadpssmodel260402_DW.Integrator_DSTATE) + rtb_Gain1_idx_0;
+  testadpssmodel260402_DW.DiscreteTimeIntegrator_DSTATE += (((rtb_Gain1_idx_1 +
+    testadpssmodel260402_DW.Integrator_DSTATE) + rtb_Gain1_idx_0) +
+    314.15926535897933) * 5.0E-5;
 
-  /* DiscreteIntegrator: '<Root>/Discrete-Time Integrator' */
-  if (testadpssmodel260402_DW.DiscreteTimeIntegrator_SYSTEM_E == 0) {
-    /* Saturate: '<S46>/Saturation' */
-    if (rtb_DeadZone > 62.831853071795862) {
-      tmp = 62.831853071795862;
-    } else if (rtb_DeadZone < -62.831853071795862) {
-      tmp = -62.831853071795862;
-    } else {
-      tmp = rtb_DeadZone;
-    }
-
-    /* DiscreteIntegrator: '<Root>/Discrete-Time Integrator' incorporates:
-     *  Constant: '<Root>/f_feedforward'
-     *  Saturate: '<S46>/Saturation'
-     *  Sum: '<Root>/Sum'
-     */
-    testadpssmodel260402_DW.DiscreteTimeIntegrator_DSTATE += (tmp +
-      314.15926535897933) * 5.0E-5;
-  }
-
-  /* End of DiscreteIntegrator: '<Root>/Discrete-Time Integrator' */
-
-  /* Math: '<Root>/Math Function' incorporates:
-   *  Constant: '<Root>/period mod'
+  /* Math: '<Root>/Mod' incorporates:
+   *  Constant: '<Root>/Constant2'
    *  UnitDelay: '<Root>/Unit Delay'
    */
   testadpssmodel260402_Y.theta = rt_modd_snf
     (testadpssmodel260402_DW.DiscreteTimeIntegrator_DSTATE, 6.2831853071795862);
 
-  /* DeadZone: '<S31>/DeadZone' */
-  if (rtb_DeadZone > 62.831853071795862) {
-    rtb_DeadZone -= 62.831853071795862;
-  } else if (rtb_DeadZone >= -62.831853071795862) {
-    rtb_DeadZone = 0.0;
-  } else {
-    rtb_DeadZone -= -62.831853071795862;
-  }
-
-  /* End of DeadZone: '<S31>/DeadZone' */
-
-  /* Gain: '<S36>/Integral Gain' */
-  rtb_Gain1_idx_1 *= 0.79;
-
-  /* Switch: '<S29>/Switch1' incorporates:
-   *  Constant: '<S29>/Clamping_zero'
-   *  Constant: '<S29>/Constant'
-   *  Constant: '<S29>/Constant2'
-   *  RelationalOperator: '<S29>/fix for DT propagation issue'
+  /* Outport: '<Root>/Out2' incorporates:
+   *  Trigonometry: '<Root>/Sin'
+   *  UnitDelay: '<Root>/Unit Delay'
    */
-  if (rtb_DeadZone > 0.0) {
-    tmp_0 = 1;
-  } else {
-    tmp_0 = -1;
-  }
+  testadpssmodel260402_Y.Va = sin(testadpssmodel260402_Y.theta);
 
-  /* Switch: '<S29>/Switch2' incorporates:
-   *  Constant: '<S29>/Clamping_zero'
-   *  Constant: '<S29>/Constant3'
-   *  Constant: '<S29>/Constant4'
-   *  RelationalOperator: '<S29>/fix for DT propagation issue1'
-   */
-  if (rtb_Gain1_idx_1 > 0.0) {
-    tmp_1 = 1;
-  } else {
-    tmp_1 = -1;
-  }
-
-  /* Switch: '<S29>/Switch' incorporates:
-   *  Constant: '<S29>/Clamping_zero'
-   *  Constant: '<S29>/Constant1'
-   *  Logic: '<S29>/AND3'
-   *  RelationalOperator: '<S29>/Equal1'
-   *  RelationalOperator: '<S29>/Relational Operator'
-   *  Switch: '<S29>/Switch1'
-   *  Switch: '<S29>/Switch2'
-   */
-  if ((rtb_DeadZone != 0.0) && (tmp_0 == tmp_1)) {
-    rtb_Gain1_idx_1 = 0.0;
-  }
-
-  /* Update for DiscreteIntegrator: '<S39>/Integrator' incorporates:
-   *  Switch: '<S29>/Switch'
-   */
-  testadpssmodel260402_DW.Integrator_DSTATE += 5.0E-5 * rtb_Gain1_idx_1;
-
-  /* Update for DiscreteIntegrator: '<S34>/Filter' */
+  /* Update for DiscreteIntegrator: '<S32>/Filter' */
   testadpssmodel260402_DW.Filter_DSTATE += 5.0E-5 * rtb_Gain1_idx_0;
 
-  /* Update for DiscreteIntegrator: '<Root>/Discrete-Time Integrator' */
-  testadpssmodel260402_DW.DiscreteTimeIntegrator_SYSTEM_E = 0U;
+  /* Update for DiscreteIntegrator: '<S37>/Integrator' */
+  testadpssmodel260402_DW.Integrator_DSTATE += 5.0E-5 * rtb_Gain1_idx_1;
 }
 
 /* Model initialize function */
 void testadpssmodel260402_initialize(void)
 {
-  /* Enable for DiscreteIntegrator: '<Root>/Discrete-Time Integrator' */
-  testadpssmodel260402_DW.DiscreteTimeIntegrator_SYSTEM_E = 1U;
+  /* (no initialization code required) */
 }
 
 /* Model terminate function */

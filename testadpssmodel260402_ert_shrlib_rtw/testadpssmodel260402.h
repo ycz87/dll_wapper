@@ -3,9 +3,9 @@
  *
  * Code generated for Simulink model 'testadpssmodel260402'.
  *
- * Model version                  : 1.5
+ * Model version                  : 1.6
  * Simulink Coder version         : 25.1 (R2025a) 21-Nov-2024
- * C/C++ source code generated on : Fri Apr 10 09:42:01 2026
+ * C/C++ source code generated on : Fri Apr 10 20:22:24 2026
  *
  * Target selection: ert_shrlib.tlc
  * Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -36,28 +36,27 @@
 
 /* Block signals (default storage) */
 typedef struct {
-  real_T Fcn1;                         /* '<S62>/Fcn1' */
-  real_T Fcn1_i;                       /* '<S61>/Fcn1' */
+  real_T Fcn1;                         /* '<S60>/Fcn1' */
+  real_T Fcn1_o;                       /* '<S59>/Fcn1' */
 } B_testadpssmodel260402_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  real_T Integrator_DSTATE;            /* '<S39>/Integrator' */
-  real_T Filter_DSTATE;                /* '<S34>/Filter' */
+  real_T Filter_DSTATE;                /* '<S32>/Filter' */
+  real_T Integrator_DSTATE;            /* '<S37>/Integrator' */
   real_T DiscreteTimeIntegrator_DSTATE;/* '<Root>/Discrete-Time Integrator' */
-  uint8_T DiscreteTimeIntegrator_SYSTEM_E;/* '<Root>/Discrete-Time Integrator' */
 } DW_testadpssmodel260402_T;
 
 /* Invariant block signals (default storage) */
 typedef struct {
-  const uint8_T Compare;               /* '<S59>/Compare' */
-  const uint8_T Compare_m;             /* '<S60>/Compare' */
+  const uint8_T Compare;               /* '<S57>/Compare' */
+  const uint8_T Compare_h;             /* '<S58>/Compare' */
 } ConstB_testadpssmodel260402_T;
 
 /* Constant parameters (default storage) */
 typedef struct {
   /* Expression: [ 1   -1/2   -1/2; 0   sqrt(3)/2   -sqrt(3)/2; 1/2  1/2  1/2 ]
-   * Referenced by: '<S58>/Gain3'
+   * Referenced by: '<S56>/Gain3'
    */
   real_T Gain3_Gain[9];
 } ConstP_testadpssmodel260402_T;
@@ -69,7 +68,8 @@ typedef struct {
 
 /* External outputs (root outports fed by signals with default storage) */
 typedef struct {
-  real_T theta;                        /* '<Root>/theta' */
+  real_T theta;                        /* '<Root>/Out1' */
+  real_T Va;                           /* '<Root>/Out2' */
 } ExtY_testadpssmodel260402_T;
 
 /* Real-time Model Data Structure */
@@ -100,6 +100,13 @@ extern void testadpssmodel260402_terminate(void);
 
 /* Real-time Model object */
 extern RT_MODEL_testadpssmodel260402_T *const testadpssmodel260402_M;
+
+/*-
+ * These blocks were eliminated from the model due to optimizations:
+ *
+ * Block '<S34>/Integral Gain' : Eliminated nontunable gain of 1
+ * Block '<S42>/Proportional Gain' : Eliminated nontunable gain of 1
+ */
 
 /*-
  * The generated code includes comments that allow you to trace directly
@@ -144,40 +151,38 @@ extern RT_MODEL_testadpssmodel260402_T *const testadpssmodel260402_M;
  * '<S26>'  : 'testadpssmodel260402/Discrete PID Controller/postSat Signal'
  * '<S27>'  : 'testadpssmodel260402/Discrete PID Controller/preInt Signal'
  * '<S28>'  : 'testadpssmodel260402/Discrete PID Controller/preSat Signal'
- * '<S29>'  : 'testadpssmodel260402/Discrete PID Controller/Anti-windup/Disc. Clamping Parallel'
- * '<S30>'  : 'testadpssmodel260402/Discrete PID Controller/Anti-windup/Disc. Clamping Parallel/Dead Zone'
- * '<S31>'  : 'testadpssmodel260402/Discrete PID Controller/Anti-windup/Disc. Clamping Parallel/Dead Zone/Enabled'
- * '<S32>'  : 'testadpssmodel260402/Discrete PID Controller/D Gain/Internal Parameters'
- * '<S33>'  : 'testadpssmodel260402/Discrete PID Controller/External Derivative/Error'
- * '<S34>'  : 'testadpssmodel260402/Discrete PID Controller/Filter/Disc. Forward Euler Filter'
- * '<S35>'  : 'testadpssmodel260402/Discrete PID Controller/Filter ICs/Internal IC - Filter'
- * '<S36>'  : 'testadpssmodel260402/Discrete PID Controller/I Gain/Internal Parameters'
- * '<S37>'  : 'testadpssmodel260402/Discrete PID Controller/Ideal P Gain/Passthrough'
- * '<S38>'  : 'testadpssmodel260402/Discrete PID Controller/Ideal P Gain Fdbk/Disabled'
- * '<S39>'  : 'testadpssmodel260402/Discrete PID Controller/Integrator/Discrete'
- * '<S40>'  : 'testadpssmodel260402/Discrete PID Controller/Integrator ICs/Internal IC'
- * '<S41>'  : 'testadpssmodel260402/Discrete PID Controller/N Copy/Disabled'
- * '<S42>'  : 'testadpssmodel260402/Discrete PID Controller/N Gain/Internal Parameters'
- * '<S43>'  : 'testadpssmodel260402/Discrete PID Controller/P Copy/Disabled'
- * '<S44>'  : 'testadpssmodel260402/Discrete PID Controller/Parallel P Gain/Internal Parameters'
- * '<S45>'  : 'testadpssmodel260402/Discrete PID Controller/Reset Signal/Disabled'
- * '<S46>'  : 'testadpssmodel260402/Discrete PID Controller/Saturation/Enabled'
- * '<S47>'  : 'testadpssmodel260402/Discrete PID Controller/Saturation Fdbk/Disabled'
- * '<S48>'  : 'testadpssmodel260402/Discrete PID Controller/Sum/Sum_PID'
- * '<S49>'  : 'testadpssmodel260402/Discrete PID Controller/Sum Fdbk/Disabled'
- * '<S50>'  : 'testadpssmodel260402/Discrete PID Controller/Tracking Mode/Disabled'
- * '<S51>'  : 'testadpssmodel260402/Discrete PID Controller/Tracking Mode Sum/Passthrough'
- * '<S52>'  : 'testadpssmodel260402/Discrete PID Controller/Tsamp - Integral/TsSignalSpecification'
- * '<S53>'  : 'testadpssmodel260402/Discrete PID Controller/Tsamp - Ngain/Passthrough'
- * '<S54>'  : 'testadpssmodel260402/Discrete PID Controller/postSat Signal/Forward_Path'
- * '<S55>'  : 'testadpssmodel260402/Discrete PID Controller/preInt Signal/Internal PreInt'
- * '<S56>'  : 'testadpssmodel260402/Discrete PID Controller/preSat Signal/Forward_Path'
- * '<S57>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0'
- * '<S58>'  : 'testadpssmodel260402/abc to dq0/abc to Alpha-Beta-Zero'
- * '<S59>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Compare To Constant'
- * '<S60>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Compare To Constant1'
- * '<S61>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Subsystem - pi//2 delay'
- * '<S62>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Subsystem1'
+ * '<S29>'  : 'testadpssmodel260402/Discrete PID Controller/Anti-windup/Passthrough'
+ * '<S30>'  : 'testadpssmodel260402/Discrete PID Controller/D Gain/Internal Parameters'
+ * '<S31>'  : 'testadpssmodel260402/Discrete PID Controller/External Derivative/Error'
+ * '<S32>'  : 'testadpssmodel260402/Discrete PID Controller/Filter/Disc. Forward Euler Filter'
+ * '<S33>'  : 'testadpssmodel260402/Discrete PID Controller/Filter ICs/Internal IC - Filter'
+ * '<S34>'  : 'testadpssmodel260402/Discrete PID Controller/I Gain/Internal Parameters'
+ * '<S35>'  : 'testadpssmodel260402/Discrete PID Controller/Ideal P Gain/Passthrough'
+ * '<S36>'  : 'testadpssmodel260402/Discrete PID Controller/Ideal P Gain Fdbk/Disabled'
+ * '<S37>'  : 'testadpssmodel260402/Discrete PID Controller/Integrator/Discrete'
+ * '<S38>'  : 'testadpssmodel260402/Discrete PID Controller/Integrator ICs/Internal IC'
+ * '<S39>'  : 'testadpssmodel260402/Discrete PID Controller/N Copy/Disabled'
+ * '<S40>'  : 'testadpssmodel260402/Discrete PID Controller/N Gain/Internal Parameters'
+ * '<S41>'  : 'testadpssmodel260402/Discrete PID Controller/P Copy/Disabled'
+ * '<S42>'  : 'testadpssmodel260402/Discrete PID Controller/Parallel P Gain/Internal Parameters'
+ * '<S43>'  : 'testadpssmodel260402/Discrete PID Controller/Reset Signal/Disabled'
+ * '<S44>'  : 'testadpssmodel260402/Discrete PID Controller/Saturation/Passthrough'
+ * '<S45>'  : 'testadpssmodel260402/Discrete PID Controller/Saturation Fdbk/Disabled'
+ * '<S46>'  : 'testadpssmodel260402/Discrete PID Controller/Sum/Sum_PID'
+ * '<S47>'  : 'testadpssmodel260402/Discrete PID Controller/Sum Fdbk/Disabled'
+ * '<S48>'  : 'testadpssmodel260402/Discrete PID Controller/Tracking Mode/Disabled'
+ * '<S49>'  : 'testadpssmodel260402/Discrete PID Controller/Tracking Mode Sum/Passthrough'
+ * '<S50>'  : 'testadpssmodel260402/Discrete PID Controller/Tsamp - Integral/TsSignalSpecification'
+ * '<S51>'  : 'testadpssmodel260402/Discrete PID Controller/Tsamp - Ngain/Passthrough'
+ * '<S52>'  : 'testadpssmodel260402/Discrete PID Controller/postSat Signal/Forward_Path'
+ * '<S53>'  : 'testadpssmodel260402/Discrete PID Controller/preInt Signal/Internal PreInt'
+ * '<S54>'  : 'testadpssmodel260402/Discrete PID Controller/preSat Signal/Forward_Path'
+ * '<S55>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0'
+ * '<S56>'  : 'testadpssmodel260402/abc to dq0/abc to Alpha-Beta-Zero'
+ * '<S57>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Compare To Constant'
+ * '<S58>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Compare To Constant1'
+ * '<S59>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Subsystem - pi//2 delay'
+ * '<S60>'  : 'testadpssmodel260402/abc to dq0/Alpha-Beta-Zero to dq0/Subsystem1'
  */
 #endif                                 /* testadpssmodel260402_h_ */
 
