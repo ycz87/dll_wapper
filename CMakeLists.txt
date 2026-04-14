@@ -5,7 +5,10 @@ set(MODEL_DIR ${CMAKE_SOURCE_DIR}/testadpssmodel260402_ert_shrlib_rtw)
 
 add_library(adpss_testadpssmodel260402 SHARED
     adpss_wrapper.c
+    ${MODEL_DIR}/rtGetNaN.c
+    ${MODEL_DIR}/rt_nonfinite.c
     ${MODEL_DIR}/testadpssmodel260402.c
+    ${MODEL_DIR}/testadpssmodel260402_data.c
 )
 
 target_include_directories(adpss_testadpssmodel260402 PRIVATE

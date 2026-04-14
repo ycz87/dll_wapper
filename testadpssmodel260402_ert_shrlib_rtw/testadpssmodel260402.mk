@@ -2,7 +2,7 @@
 ## Makefile generated for component 'testadpssmodel260402'. 
 ## 
 ## Makefile     : testadpssmodel260402.mk
-## Generated on : Mon Apr 13 20:42:35 2026
+## Generated on : Tue Apr 14 12:55:31 2026
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/testadpssmodel260402_win64.dll
 ## Product type : shared library
 ## 
@@ -21,10 +21,10 @@
 
 PRODUCT_NAME              = testadpssmodel260402
 MAKEFILE                  = testadpssmodel260402.mk
-MATLAB_ROOT               = D:/PROGRA~2/MATLAB/R2025a
-MATLAB_BIN                = D:/PROGRA~2/MATLAB/R2025a/bin
+MATLAB_ROOT               = D:/MATLAB/R2025a
+MATLAB_BIN                = D:/MATLAB/R2025a/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
-START_DIR                 = D:/ADPSS1/dll_wapper
+START_DIR                 = D:/matlabtemp/dll_wapper
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
@@ -185,7 +185,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_STAN
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c
+SRCS = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rtGetNaN.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rt_nonfinite.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402_data.c
 
 MAIN_SRC = $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/ert_main.c
 
@@ -195,7 +195,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = testadpssmodel260402.obj
+OBJS = rtGetNaN.obj rt_nonfinite.obj testadpssmodel260402.obj testadpssmodel260402_data.obj
 
 MAIN_OBJ = ert_main.obj
 
@@ -538,7 +538,19 @@ ert_main.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/ert_main.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
+rtGetNaN.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rtGetNaN.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+rt_nonfinite.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/rt_nonfinite.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
 testadpssmodel260402.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+testadpssmodel260402_data.obj : $(START_DIR)/testadpssmodel260402_ert_shrlib_rtw/testadpssmodel260402_data.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 

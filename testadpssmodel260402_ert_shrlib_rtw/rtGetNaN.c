@@ -1,5 +1,5 @@
 /*
- * File: testadpssmodel260402_private.h
+ * File: rtGetNaN.c
  *
  * Code generated for Simulink model 'testadpssmodel260402'.
  *
@@ -13,14 +13,20 @@
  * Validation result: Not run
  */
 
-#ifndef testadpssmodel260402_private_h_
-#define testadpssmodel260402_private_h_
 #include "rtwtypes.h"
-#include "testadpssmodel260402_types.h"
+#include "rtGetNaN.h"
 
-extern real_T rt_modd_snf(real_T u0, real_T u1);
+/* Return rtNaN needed by the generated code. */
+real_T rtGetNaN(void)
+{
+  return rtNaN;
+}
 
-#endif                                 /* testadpssmodel260402_private_h_ */
+/* Return rtNaNF needed by the generated code. */
+real32_T rtGetNaNF(void)
+{
+  return rtNaNF;
+}
 
 /*
  * File trailer for generated code.
