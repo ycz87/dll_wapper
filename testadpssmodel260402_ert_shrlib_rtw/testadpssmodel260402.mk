@@ -2,7 +2,7 @@
 ## Makefile generated for component 'testadpssmodel260402'. 
 ## 
 ## Makefile     : testadpssmodel260402.mk
-## Generated on : Tue Apr 14 12:55:31 2026
+## Generated on : Sat Apr 18 15:09:08 2026
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/testadpssmodel260402_win64.dll
 ## Product type : shared library
 ## 
@@ -21,10 +21,10 @@
 
 PRODUCT_NAME              = testadpssmodel260402
 MAKEFILE                  = testadpssmodel260402.mk
-MATLAB_ROOT               = D:/MATLAB/R2025a
-MATLAB_BIN                = D:/MATLAB/R2025a/bin
+MATLAB_ROOT               = D:/PROGRA~2/MATLAB/R2025a
+MATLAB_BIN                = D:/PROGRA~2/MATLAB/R2025a/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
-START_DIR                 = D:/matlabtemp/dll_wapper
+START_DIR                 = D:/ADPSS1/dll_wapper
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
